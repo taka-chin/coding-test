@@ -3,32 +3,30 @@
 #include <stdexcept>
 #include <string>
 
-using namespace std;
-
 // name value object
 class Name {
  private:
-  string value;
+   std::string value;
 
  public:
-  explicit Name(const string& value) : value(value) { validate(value); }
+  explicit Name(const std::string& value) : value(value) { validate(value); }
 
-  const string& getValue() const { return value; }
+  const std::string& getValue() const { return value; }
 
  private:
-  bool allDigit(const string& value) {
+  bool allDigit(const std::string& value) {
     for (char c : value)
       if (!isdigit(c)) return false;
     return true;
   };
 
-  void validate(const string& value) {
+  void validate(const std::string& value) {
     if (value.empty()) {
-      throw invalid_argument("Name is empty");
+      throw std::invalid_argument("Name is empty");
     }
 
     if (allDigit(value)) {
-      throw invalid_argument("Name cannot be only digit");
+      throw std::invalid_argument("Name cannot be only digit");
     }
   }
 };
