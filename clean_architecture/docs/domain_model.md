@@ -26,8 +26,19 @@ class PhoneNumber{
     value : string
 }
 
+class UserRepository {
+        <<Repository>>
+}
+
+class NotificationService {
+        <<Interface>>
+}
+
 User *-- Name
 User *-- Email
 User *-- PhoneNumber
+
+UserRepository --> User
+NotificationService ..> User
 
 ```
