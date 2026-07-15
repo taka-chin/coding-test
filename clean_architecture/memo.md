@@ -3,17 +3,17 @@
 ```mermaid
 classDiagram
 
-class User(){
-    +int id;
-    +string name;
+class User{
+    +int id
+    +string name
 }
 
-class UserInfo(){
-    +User user;
-    +string email;
-    +string phone;
+class UserInfo{
+    +User user
+    +string email
+    +string phone
 }
 
-User <-- Userinfo : use
+UserInfo *-- User
 
 ```
