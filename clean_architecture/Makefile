@@ -23,9 +23,35 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(TEST_TARGET)
 
 re: clean all
 
 .PHONY: all run clean rebuild
 
+# GoogleTest
+GTEST_DIR = $(shell brew --prefix googletest)
+
+TEST_CFLAGS = -I$(GTEST_DIR)/include
+
+TEST_LDFLAGS = -L$(GTEST_DIR)/lib
+
+TEST_TARGET = name_test
+
+TEST_SOURCES = tests/domain/name_test.cpp
+
+TEST_LIBS = -lgtest -lgtest_main -pthread
+
+test: $(TEST_TARGET)
+
+$(TEST_TARGET): $(TEST_SOURCES)
+	$(CXX) $(CXXFLAGS) \
+	$(TEST_CFLAGS) \
+	-I./model \
+	$(TEST_SOURCES) \
+	$(TEST_LDFLAGS) \
+	$(TEST_LIBS) \
+	-o $(TEST_TARGET) \
+
+run-test: test
+	./$(TEST_TARGET)
