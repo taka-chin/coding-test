@@ -1,4 +1,4 @@
-クラス図
+ドメインモデル図
 
 ```mermaid
 classDiagram
