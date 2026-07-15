@@ -4,16 +4,30 @@
 classDiagram
 
 class User{
-    +int id
-    +string name
+    <<Entity>>
+    +UserId id
+    +Name name
+    +Email email
+    +DateTime updatedAt
 }
 
-class UserInfo{
-    +User user
-    +string email
-    +string phone
+class Name{
+    <<ValueObject>>
+    value : string
 }
 
-UserInfo *-- User
+class Email {
+    <<ValueObject>>
+    value : string
+}
+
+class PhoneNumber{
+    <<ValueObject>>
+    value : string
+}
+
+User *-- Name
+User *-- Email
+User *-- PhoneNumber
 
 ```
