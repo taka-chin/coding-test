@@ -49,6 +49,10 @@ class User {
         return phoneNumber;
     }
 
+    const std::chrono::system_clock::time_point& getUpdatedAt() const {
+        return updatedAt;
+    }
+
      void updateName(const Name& newName, const std::chrono::system_clock::time_point& now) {
         name = newName;
         updatedAt = now;
