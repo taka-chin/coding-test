@@ -51,7 +51,7 @@ public:
         auto now = std::chrono::system_clock::now();
         
         if (!user.canUpdate(now)) {
-            throw std::runtime_error("User information can be changed up to once every 30 days.");
+            throw std::runtime_error("User information can only be updated once every 30 days");
         }
         if (request.name.has_value()) {
             Name newName(request.name.value());

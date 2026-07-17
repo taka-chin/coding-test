@@ -9,7 +9,7 @@ TARGET = a.out
 SOURCES = main.cpp
 
 # ヘッダーファイル
-HEADERS = model/user.h model/email.h model/phone_number.h database/database.cpp mailer/mailer.cpp controller/user_controller.h
+HEADERS = domain/user.h domain/email.h domain/name.h domain/phone_number.h usecase/update_user.h usecase/user_repository.h usecase/notification_service.h database/database.cpp database/database_user_repository.h mailer/mailer.cpp mailer/mailer_notification_service.h controller/user_controller.h
 
 # デフォルトターゲット
 all: $(TARGET)
@@ -45,7 +45,6 @@ TEST_LIBS = -lgtest -lgtest_main -pthread
 test:
 	$(CXX) $(CXXFLAGS) \
 	$(TEST_CFLAGS) \
-	-I./model \
 	$(TEST_SOURCES) \
 	$(TEST_LDFLAGS) \
 	$(TEST_LIBS) \
