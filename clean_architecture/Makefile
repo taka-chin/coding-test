@@ -38,7 +38,7 @@ TEST_LDFLAGS = -L$(GTEST_DIR)/lib
 
 TEST_TARGET = test_runner
 
-TEST_SOURCES = tests/domain/*.cpp
+TEST_SOURCES = tests/domain/*.cpp tests/usecase/*.cpp
 
 TEST_LIBS = -lgtest -lgtest_main -pthread
 
