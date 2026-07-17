@@ -3,10 +3,9 @@
 #include <stdexcept>
 #include <string>
 
-// name value object
 class Name {
  private:
-   std::string value;
+  std::string value;
 
  public:
   explicit Name(const std::string& value) : value(value) { validate(value); }

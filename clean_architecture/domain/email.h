@@ -1,6 +1,6 @@
 #pragma once
-#include <stdexcept>
 #include <cctype>
+#include <stdexcept>
 #include <string>
 
 class Email {

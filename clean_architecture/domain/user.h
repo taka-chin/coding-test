@@ -1,11 +1,11 @@
 #pragma once
 #include <chrono>
 #include <string>
-#include "name.h"
-#include "email.h"
-#include "phone_number.h"
 
-using namespace std;
+// ドメイン層
+#include "email.h"
+#include "name.h"
+#include "phone_number.h"
 
 // ユーザーを表すクラス
 // valueObjectを属性として持つ
@@ -21,55 +21,47 @@ class User {
   std::chrono::system_clock::time_point updatedAt;
 
  public:
-    User(
-        int id,
-        const Name& name,
-        const Email& email,
-        const PhoneNumber& phoneNumber,
-        const std::chrono::system_clock::time_point& updatedAt
-    ) : id(id),
+  User(int id, const Name& name, const Email& email,
+       const PhoneNumber& phoneNumber,
+       const std::chrono::system_clock::time_point& updatedAt)
+      : id(id),
         name(name),
         email(email),
         phoneNumber(phoneNumber),
         updatedAt(updatedAt) {}
-    
-    int getId() const {
-        return id;
-    }
 
-    const Name& getName() const {
-        return name;
-    }
+  int getId() const { return id; }
 
-    const Email& getEmail() const {
-        return email;
-    }
+  const Name& getName() const { return name; }
 
-    const PhoneNumber& getPhoneNumber() const {
-        return phoneNumber;
-    }
+  const Email& getEmail() const { return email; }
 
-    const std::chrono::system_clock::time_point& getUpdatedAt() const {
-        return updatedAt;
-    }
+  const PhoneNumber& getPhoneNumber() const { return phoneNumber; }
 
-     void updateName(const Name& newName, const std::chrono::system_clock::time_point& now) {
-        name = newName;
-        updatedAt = now;
-    }
+  const std::chrono::system_clock::time_point& getUpdatedAt() const {
+    return updatedAt;
+  }
 
-    void updateEmail(const Email& newEmail, const std::chrono::system_clock::time_point& now) {
-        email = newEmail;
-        updatedAt = now;
-    }
+  void updateName(const Name& newName,
+                  const std::chrono::system_clock::time_point& now) {
+    name = newName;
+    updatedAt = now;
+  }
 
-    void updatePhoneNumber(const PhoneNumber& newPhoneNumber, const std::chrono::system_clock::time_point& now) {
-        phoneNumber = newPhoneNumber;
-        updatedAt = now;
-    }
+  void updateEmail(const Email& newEmail,
+                   const std::chrono::system_clock::time_point& now) {
+    email = newEmail;
+    updatedAt = now;
+  }
 
-    bool canUpdate(const std::chrono::system_clock::time_point& now) const {
-        auto diff = std::chrono::duration_cast<std::chrono::hours>(now - updatedAt);
-        return diff.count() / 24 >= 30;
-    }
+  void updatePhoneNumber(const PhoneNumber& newPhoneNumber,
+                         const std::chrono::system_clock::time_point& now) {
+    phoneNumber = newPhoneNumber;
+    updatedAt = now;
+  }
+
+  bool canUpdate(const std::chrono::system_clock::time_point& now) const {
+    auto diff = std::chrono::duration_cast<std::chrono::hours>(now - updatedAt);
+    return diff.count() / 24 >= 30;
+  }
 };
