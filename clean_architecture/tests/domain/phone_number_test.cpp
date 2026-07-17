@@ -1,4 +1,4 @@
-#include "../../model/phone_number.h"
+#include "../../domain/phone_number.h"
 
 #include <gtest/gtest.h>
 

@@ -21,7 +21,7 @@ private:
     NotificationService* notificationService;
 
 public:
-    UpdateUserInfoUseCase(
+    UpdateUserInfo(
         UserRepository* userRepository,
         NotificationService* notificationService
     ) : userRepository(userRepository),
@@ -29,6 +29,10 @@ public:
     
     UserInfo execute(const std::string& userId, const UpdateUserRequest& request) {
         // ここにユースケースの手順を書く
+        User user = userRepository->findById(userId);
+        if (!user.) {
+            throw runtime_error("User not found");
+        }
     }
 };
 

@@ -1,4 +1,4 @@
-#include "../../model/name.h"
+#include "../../domain/name.h"
 
 #include <gtest/gtest.h>
 

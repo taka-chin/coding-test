@@ -1,4 +1,4 @@
-#include "../../model/email.h"
+#include "../../domain/email.h"
 
 #include <gtest/gtest.h>
 

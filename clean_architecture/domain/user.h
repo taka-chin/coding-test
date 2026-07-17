@@ -1,16 +1,71 @@
 #pragma once
+#include <chrono>
 #include <string>
+#include "name.h"
+#include "email.h"
+#include "phone_number.h"
 
 using namespace std;
 
 // ユーザーを表すクラス
+// valueObjectを属性として持つ
+// 更新日時を管理する
+// 更新可能か判断する
+
 class User {
  private:
   int id;
-  string name;
+  Name name;
+  Email email;
+  PhoneNumber phoneNumber;
+  std::chrono::system_clock::time_point updatedAt;
 
  public:
-  User() : id(0), name("") {}
+    User(
+        int id,
+        const Name& name,
+        const Email& email,
+        const PhoneNumber& phoneNumber,
+        const std::chrono::system_clock::time_point& updatedAt
+    ) : id(id),
+        name(name),
+        email(email),
+        phoneNumber(phoneNumber),
+        updatedAt(updatedAt) {}
+    
+    int getId() const {
+        return id;
+    }
 
-  User(int id, const string& name) : id(id), name(name) {}
+    const Name& getName() const {
+        return name;
+    }
+
+    const Email& getEmail() const {
+        return email;
+    }
+
+    const PhoneNumber& getPhoneNumber() const {
+        return phoneNumber;
+    }
+
+     void updateName(const Name& newName, const std::chrono::system_clock::time_point& now) {
+        name = newName;
+        updatedAt = now;
+    }
+
+    void updateEmail(const Email& newEmail, const std::chrono::system_clock::time_point& now) {
+        email = newEmail;
+        updatedAt = now;
+    }
+
+    void updatePhoneNumber(const PhoneNumber& newPhoneNumber, const std::chrono::system_clock::time_point& now) {
+        phoneNumber = newPhoneNumber;
+        updatedAt = now;
+    }
+
+    bool canUpdate(const std::chrono::system_clock::time_point& now) const {
+        auto diff = std::chrono::duration_cast<std::chrono::hours>(now - updatedAt);
+        return diff.count() / 24 >= 30;
+    }
 };
